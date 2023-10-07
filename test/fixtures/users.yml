@@ -1,0 +1,13 @@
+# test/fixtures/users.yml
+
+accountant:
+  email: a@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+manager:
+  email: b@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+eavesdropper:
+  email: c@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
