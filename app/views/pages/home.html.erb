@@ -1,26 +1,28 @@
-<main class="container mx-auto my-28 px-5">
+<main class="container mx-auto mt-12 mb-28 px-5">
     <h1 class="text-3xl font-bold text-center">MY SHOP</h1>
     <div
         id="products"
         class="grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-12 mt-12"
     >
         <% @products.each do |product| %>
-            <div id="<%= product.id %>" class="flex flex-col items-center">
-                <img
-                src="<%= product.image %>"
-                alt="product"
-                class="w-48 h-48 object-contain"
-                />
-                <p class="text-center font-bold">
-                    <%= product.title %>
-                </p>
-                <p class="text-center">$<%= product.price %></p>
-                <button
-                class="bg-sky-300 text-white font-bold py-2 px-4 rounded-full mt-4"
-                >
-                Add to cart
-                </button>
-            </div>
+            <%= link_to(pages_add_path(id: product), method: :post, data: { turbo_frame: "cart_total" }) do %>
+                <div class="flex flex-col items-center transition ease-in-out hover:scale-125">
+                    <img
+                    src="<%= product.image %>"
+                    alt="product"
+                    class="w-48 h-48 object-contain"
+                    />
+                    <p class="text-center font-bold">
+                        <%= product.title %>
+                    </p>
+                    <p class="text-center">$<%= product.price %></p>
+                    <button
+                    class="bg-sky-300 text-white font-bold py-2 px-4 rounded-full mt-4"
+                    >
+                    Add to cart
+                    </button>
+                </div>
+            <% end %>
         <% end %>
     </div>
 </main>
@@ -34,6 +36,8 @@
     <div>
     <span class="text-white font-bold mr-4 text-lg">Total</span>
     <span class="text-white font-bold mr-2 text-2xl">$</span>
-    <span id="cart-total" class="text-white font-bold text-2xl">0</span>
+    <%= turbo_frame_tag "cart_total" do %>
+        <span id="cart-total" class="text-white font-bold text-2xl"><%= @total %></span>
+    <% end %>
     </div>
 </div>
