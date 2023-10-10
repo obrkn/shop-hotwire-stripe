@@ -1,20 +1,12 @@
-<%= turbo_frame_tag "cart_total" do %>
-  <%= link_to(
-        pages_cart_path, id: "cart", class: "fixed w-full bottom-0 bg-sky-300",
-        data: { turbo_frame: "_top" }
-    ) do %>
-    <div
-        class="py-4 px-8 flex flex-row justify-between items-end cursor-pointer"
-    >
-      <div>
-        <span id="cart-items" class="text-white font-bold text-2xl"><%= @cart_items.size %></span>
-        <span class="text-white font-bold mr-4 ml-2 text-lg">items</span>
-      </div>
-      <div>
-        <span class="text-white font-bold mr-4 text-lg">Total</span>
-        <span class="text-white font-bold mr-2 text-2xl">$</span>
-        <span id="cart-total" class="text-white font-bold text-2xl"><%= @total %></span>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+    
+<div class="py-4 px-8 flex flex-row justify-between items-end cursor-pointer">
+  <div>
+    <span id="cart-items" class="text-white font-bold text-2xl"><%= @cart_items.size %></span>
+    <span class="text-white font-bold mr-4 ml-2 text-lg">items</span>
+  </div>
+  <div>
+    <span class="text-white font-bold mr-4 text-lg">Total</span>
+    <span class="text-white font-bold mr-2 text-2xl">$</span>
+    <span id="cart-total" class="text-white font-bold text-2xl"><%= @total %></span>
+  </div>
+</div>

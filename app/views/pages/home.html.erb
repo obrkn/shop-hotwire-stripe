@@ -1,18 +1,24 @@
-<main class="container mx-auto mt-12 mb-28">
+<%= render "layouts/header" %>
+<main class="container mx-auto my-28">
   <h1 class="text-3xl font-bold text-center">MY SHOP</h1>
   <div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-12 mt-12" >
     <% @products.each do |product| %>
-      <%= button_to(pages_add_path(id: product), class: "flex flex-col m-auto items-center transition ease-in-out hover:scale-105", method: :post, data: { turbo_frame: "cart_total" }) do %>
-        <img src="<%= product.image %>" alt="product" class="w-48 h-48 object-contain" />
-        <p class="text-center font-bold">
-          <%= product.title %>
-        </p>
-        <p class="text-center">$<%= product.price %></p>
-        <div class="bg-sky-300 text-white font-bold py-2 px-4 rounded-full mt-4">
-          Add to cart
-        </div>
+      <% if user_signed_in? %>
+        <%= button_to(cart_items_path(product_id: product), method: :post, data: { turbo_frame: "cart_total" }) do %>
+          <%= render "product_card", product: product %>
+        <% end %>
+      <% else %>
+        <%= link_to(new_user_session_path) do %>
+          <%= render "product_card", product: product %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
 </main>
-<%= render "fixed_cart" %>
+<% if user_signed_in? %>
+  <%= turbo_frame_tag "cart_total" do %>
+    <%= link_to(cart_items_path, id: "cart", class: "fixed w-full bottom-0 bg-sky-300", data: { turbo_frame: "_top" }) do %>
+      <%= render "fixed_cart" %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -2,6 +2,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  post 'pages/add', to: 'pages#add'
-  get 'pages/cart', to: 'pages#cart'
+  resources :cart_items, only: %i[create index]
 end

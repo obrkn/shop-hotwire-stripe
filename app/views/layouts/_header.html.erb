@@ -1,0 +1,12 @@
+<header class="fixed top-0 w-full flex flex-row-reverse justify-between p-4 bg-sky-300 text-white font-bold">
+  <% if user_signed_in? %>
+    <%= button_to(destroy_user_session_path, method: :delete) do %>
+      Logout
+    <% end %>
+    <span class="mr-4"><%= current_user.email %></span>
+  <% else %>
+    <%= link_to(new_user_session_path) do %>
+      Login
+    <% end %>
+  <% end %>
+</header>
