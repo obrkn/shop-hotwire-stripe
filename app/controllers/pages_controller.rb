@@ -2,26 +2,26 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    @cart = session[:cart] ||= {}
     @products = Product.all
-    @total = calc_total(@cart)
+    @cart_items = current_user_1.cart_items.eager_load(:product)
+    @total = @cart_items.map(&:product).map(&:price).sum
   end
 
   def add
-    @cart = session[:cart] ||= {}
-    @cart[params[:id]] = (@cart[params[:id]] || 0) + 1
-    session[:cart] = @cart
-    @total = calc_total(@cart)
+    CartItem.create(product_id: params[:id], user_id: current_user_1.id)
+    @cart_items = current_user_1.cart_items.eager_load(:product)
+    @total = @cart_items.map(&:product).map(&:price).sum
+  end
+
+  def cart
+    @products = Product.all
+    @count = current_user_1.cart_items.count
+    @total = current_user_1.cart_items.sum(:price)
   end
 
   private
 
-  def calc_total(cart)
-    product_hash = Product.select(:id, :price).where(id: cart.keys).index_by(&:id)
-    total = 0.0
-    cart.each do |id, quantity|
-      total += product_hash[id.to_i].price * quantity if product_hash[id.to_i]
-    end
-    total.round(2)
+  def current_user_1
+    User.first
   end
 end

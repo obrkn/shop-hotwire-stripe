@@ -6,12 +6,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
   <body>
-    <%= yield %>
+    <% if devise_controller? %>
+      <main class="container mx-auto mt-12 mb-28">
+        <div class="mx-auto">
+          <%= yield %>
+        </div>
+      </main>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
