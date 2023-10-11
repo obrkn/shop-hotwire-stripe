@@ -1,24 +1,6 @@
-# README
+This is my portfolio
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://shop-hotwire-stripe.onrender.com/
 
-Things you may want to cover:
+https://github.com/obrkn/shop-hotwire-stripe/assets/56966930/60be8b0b-0939-4a46-95c3-c1fb3c09431a
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
