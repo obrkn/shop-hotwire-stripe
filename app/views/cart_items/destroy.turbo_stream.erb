@@ -4,3 +4,10 @@
     <%= render "pages/fixed_cart" %>
   <% end %>
 <% end %>
+<% if @cart_items.size.zero? %>
+  <%= turbo_stream.update "empty_text" do %>
+    <p class="text-center mt-28">Your cart is empty</p>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "empty_text", '' %>
+<% end %>

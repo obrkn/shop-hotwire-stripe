@@ -1,7 +1,7 @@
 <%= render "layouts/header" %>
 <main class="container mx-auto my-28">
   <h1 class="text-3xl font-bold text-center">CART</h1>
-  <div class="grid grid-cols-1 divide-y-2 divide-sky-300 divide-dotted mt-12">
+  <div id="cart-details" class="grid grid-cols-1 divide-y-2 divide-sky-300 divide-dotted mt-12">
     <% @product_count_by_id.each do |id, count| %>
       <%- product = @cart_products.find{|p| p.id == id} %>
       <%= turbo_frame_tag id do %>
@@ -18,6 +18,10 @@
       <% end %>
     <% end %>
   </div>
+  <% if @cart_items.size == 0 %>
+    <p class="text-center mt-28">Your cart is empty</p>
+  <% end %>
+  <%= turbo_frame_tag "empty_text" %>
 </main>
 <%= turbo_frame_tag "cart_total" do %>
   <%= link_to(root_path, id: "cart", class: "fixed w-full bottom-0 bg-sky-300", data: { turbo_frame: "_top" }) do %>
