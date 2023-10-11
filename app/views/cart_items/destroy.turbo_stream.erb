@@ -1,0 +1,6 @@
+<%= turbo_stream.remove params[:id] %>
+<%= turbo_stream.update "cart_total" do %>
+  <%= link_to(root_path, id: "cart", class: "fixed w-full bottom-0 bg-sky-300", data: { turbo_frame: "_top" }) do %>
+    <%= render "pages/fixed_cart" %>
+  <% end %>
+<% end %>

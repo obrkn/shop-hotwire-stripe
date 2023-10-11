@@ -11,4 +11,10 @@ class CartItemsController < ApplicationController
     @cart_items = current_user.cart_items.eager_load(:product)
     @total = @cart_items.map(&:product).map(&:price).sum
   end
+
+  def destroy
+    CartItem.where(product_id: params[:id], user_id: current_user.id).destroy_all
+    @cart_items = current_user.cart_items.eager_load(:product)
+    @total = @cart_items.map(&:product).map(&:price).sum
+  end
 end
