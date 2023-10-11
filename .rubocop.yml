@@ -12,7 +12,11 @@ AllCops:
     - db/schema.rb
     - node_modules/**/*
     - vendor/**/*
+    - db/migrate/**/*
 
 Layout/FirstArgumentIndentation:
   Exclude:
     - spec/controllers/api/payments_controller_spec.rb
+
+Style/Documentation:
+  Enabled: false

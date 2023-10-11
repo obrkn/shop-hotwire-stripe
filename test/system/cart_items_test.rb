@@ -13,14 +13,14 @@ class CartItemsTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'MY CART'
     assert_selector 'span#cart-items', text: '1'
 
-    page.find('button.delete-item').click
+    click_button(class: 'delete-item')
     assert_selector 'span#cart-items', text: '0'
   end
 
   test 'link to cart page' do
     visit cart_items_path
 
-    click_on 'Total'
+    click_link(id: 'cart')
     assert_selector 'h1', text: 'MY SHOP'
   end
 end

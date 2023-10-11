@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Cart items controller
 class CartItemsController < ApplicationController
   def index
     @cart_items = current_user.cart_items.eager_load(:product)

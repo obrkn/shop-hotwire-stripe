@@ -13,14 +13,14 @@ class PagesTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'MY SHOP'
     assert_selector 'span#cart-items', text: '1'
 
-    click_on 'Add to cart', match: :first
+    click_button(class: 'add-cart-btn', match: :first)
     assert_selector 'span#cart-items', text: '2'
   end
 
   test 'link to cart page' do
     visit root_path
 
-    click_on 'Total'
+    click_link(id: 'cart')
     assert_selector 'h1', text: 'MY CART'
   end
 end
