@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'price' do
+    assert_equal 109.95, products(:one).price
+  end
 end
