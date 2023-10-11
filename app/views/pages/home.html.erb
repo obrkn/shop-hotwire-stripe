@@ -4,7 +4,7 @@
   <div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-12 mt-12" >
     <% @products.each do |product| %>
       <% if user_signed_in? %>
-        <%= button_to(cart_items_path(product_id: product), method: :post, data: { turbo_frame: "cart_total" }) do %>
+        <%= button_to(cart_items_path(product_id: product), method: :post, data: { turbo_frame: "cart_total" }, class: 'w-full') do %>
           <%= render "product_card", product: product %>
         <% end %>
       <% else %>
