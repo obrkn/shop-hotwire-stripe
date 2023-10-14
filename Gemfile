@@ -78,4 +78,6 @@ group :test do
 end
 
 gem 'devise', '~> 4.8.1'
+gem 'dotenv-rails'
+gem 'stripe'
 gem 'tailwindcss-rails', '~> 2.0'
