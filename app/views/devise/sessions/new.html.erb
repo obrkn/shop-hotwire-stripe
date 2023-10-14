@@ -3,11 +3,11 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", value: "one@example.com" %>
   </div>
-  <div class="field">
+  <div class="field mt-4">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "current-password", value: "password" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Log in", class: "cursor-pointer  bg-sky-300 text-white font-bold py-2 px-16 rounded-full mt-4 cursor-pointer" %>
+  <div class="actions mt-6">
+    <%= f.submit "Log in", class: "cursor-pointer  bg-sky-300 text-white font-bold py-2 px-16 rounded-full cursor-pointer" %>
   </div>
 <% end %>
