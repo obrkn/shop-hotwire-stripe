@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: shop_hotwire_stripe_production
+  database: shop_hotwire_stripe_tlzw
   username: shop_hotwire_stripe
   password: <%= ENV["SHOP_HOTWIRE_STRIPE_DATABASE_PASSWORD"] %>
   url: <%= ENV['DATABASE_URL'] %>
