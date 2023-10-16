@@ -20,6 +20,12 @@
   </div>
   <% if @cart_items.size == 0 %>
     <p class="text-center mt-28">Your cart is empty</p>
+  <% else %>
+    <%= turbo_frame_tag 'purchase_button' do %>
+      <div class="text-center mt-12">
+        <%= link_to "Purchase now", new_payment_path, class: 'bg-sky-300 text-white font-bold py-4 px-8 rounded-full', data: {turbo: false} %>
+      </div>
+    <% end %>
   <% end %>
   <%= turbo_frame_tag "empty_text" %>
 </main>

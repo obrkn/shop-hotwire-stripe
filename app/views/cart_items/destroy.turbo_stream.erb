@@ -5,6 +5,7 @@
   <% end %>
 <% end %>
 <% if @cart_items.size.zero? %>
+  <%= turbo_stream.remove 'purchase_button' %>
   <%= turbo_stream.update "empty_text" do %>
     <p class="text-center mt-28">Your cart is empty</p>
   <% end %>

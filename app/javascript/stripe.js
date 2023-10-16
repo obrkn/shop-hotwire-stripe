@@ -2,7 +2,7 @@
 const stripe = Stripe(document.body.dataset.stripePublishableKey);
 
 // The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
+// const items = [{ id: "xl-tshirt" }];
 
 let elements;
 
@@ -27,7 +27,11 @@ async function initialize() {
   const appearance = {
     theme: "stripe",
   };
-  elements = stripe.elements({ appearance, clientSecret });
+  elements = stripe.elements({
+    appearance,
+    clientSecret,
+    locale: "en",
+  });
 
   const linkAuthenticationElement = elements.create("linkAuthentication");
   linkAuthenticationElement.mount("#link-authentication-element");
@@ -41,10 +45,11 @@ async function initialize() {
     defaultValues: {
       billingDetails: {
         email: document.body.dataset.currentUserEmail,
+        address: {
+          country: "CA",
+          postal_code: "M5V 1T4",
+        },
       },
-    },
-    fields: {
-      billingDetails: "never",
     },
   };
 
@@ -60,7 +65,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://localhost:4242/checkout.html",
+      return_url: document.body.dataset.returnUrl,
       receipt_email: emailAddress,
     },
   });

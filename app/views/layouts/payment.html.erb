@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "stripe", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://js.stripe.com/v3/"></script>
@@ -16,6 +15,7 @@
     data-stripe-publishable-key="<%= Rails.configuration.stripe[:publishable_key] %>"
     data-client-secret="<%= @client_secret %>"
     data-current-user-email="<%= current_user.email %>"
+    data-return-url="<%= complete_cart_items_url %>"
     data-turbo="false"
   >
     <%= yield %>

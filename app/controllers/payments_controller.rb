@@ -2,11 +2,14 @@
 
 class PaymentsController < ApplicationController
   layout 'payment'
+
   def new
+    cart_items = current_user&.cart_items&.eager_load(:product) || []
+    @total = cart_items.map(&:product).sum(&:price).round(2)
+
     payment_intent = Stripe::PaymentIntent.create(
-      amount: 3000,
-      currency: 'jpy',
-      # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+      amount: (@total * 100).round,
+      currency: 'cad',
       automatic_payment_methods: {
         enabled: true
       }
