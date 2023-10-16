@@ -1,22 +1,16 @@
 # frozen_string_literal: true
 
 class PaymentsController < ApplicationController
-  def new; end
-
-  def create
-    customer = Stripe::Customer.create({
-                                         email: params[:stripeEmail],
-                                         source: params[:stripeToken]
-                                       })
-
-    Stripe::Charge.create({
-                            customer: customer.id,
-                            amount: 500,
-                            description: 'Description of your product',
-                            currency: 'usd'
-                          })
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_payment_path
+  layout 'payment'
+  def new
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: 3000,
+      currency: 'jpy',
+      # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+      automatic_payment_methods: {
+        enabled: true
+      }
+    )
+    @client_secret = payment_intent.client_secret
   end
 end

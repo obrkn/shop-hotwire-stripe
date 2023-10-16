@@ -1,11 +1,14 @@
-<%= form_tag payments_path do %>
-  <label class="amount">
-    <span>Amount: $5.00</span>
-  </label>
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="A month's subscription"
-    data-amount="500"
-    data-locale="auto"></script>
-<% end %>
+    <!-- Display a payment form -->
+<form id="payment-form">
+  <div id="link-authentication-element">
+    <!--Stripe.js injects the Link Authentication Element-->
+  </div>
+  <div id="payment-element">
+    <!--Stripe.js injects the Payment Element-->
+  </div>
+  <button id="submit">
+    <div class="spinner hidden" id="spinner"></div>
+    <span id="button-text">Pay now</span>
+  </button>
+  <div id="payment-message" class="hidden"></div>
+</form>
